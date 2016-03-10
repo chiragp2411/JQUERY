@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+
+#container{
+	 margin:auto;
+	  width: 60%;
+	  height:350px;
+    border: 2px solid #000;
+    padding: 10px;
+}
+
+h1,h2{
+	text-align:center;
+	display:list-item
+}
+
+.box{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	width:60%;
+	padding:10px;
+	border: 2px solid #000;
+	
+	
+	
+}
+#menu{
+	text-align:center;
+}
+#error{
+	text-align:center;
+	background:#F00;
+	color:#FFF;
+	
+}
+
+a{
+	text-decoration: none;
+	color:#000;
+}
+.caption{
+	text-align:center;
+}
+#container img{
+	
+	width:100%;
+	height:300px;
+    
+}
+
+.comment{
+	margin-top:15px;
+}
+
+#loading img{
+	width:5%;
+	height:50px;
+	
+}
+#loading{
+	display:none;
+}
+
+label, input[type="submit"]{
+margin-top:15px;
+}

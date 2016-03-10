@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="main.css" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(e) {	
+
+var pictures, $menu_links=$("#menu a"), $title=$("title"), $image=$("#container img"), $caption=$(".caption");
+var $error=$("#error"), $form=$("form"), $loading=$("#loading"), $comments=$("#comments");
+	
+	$form.submit(function(){
+				$form.hide();
+				
+				$.ajax({
+					type:"post",
+					url:$form.attr("action"),//Server path
+					data:$form.serialize(),//Important Note:- Data to be sent to the server 
+					beforeSend: function(){
+						$loading.show();
+					},//before
+					complete:function(){
+						$loading.hide();
+					},
+					success: function(data){//Important Note:- The data returned from the server
+						$comments.append($form.serialize());
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						if($("#error").length==0){
+							$("#menu").after('<div id="error" class="box">An error has occurred Please try again later!</div>');
+							$("#error").show();
+						}
+					}//error
+		
+				});
+				
+				return false;
+		})//$form.submit
+		
+		
+	$menu_links.click(function(){
+		
+				$.ajax({
+					url:"pictures.json",
+					dataType: "json",
+					 
+					success: function(data){
+						 pictures=data;
+						 
+					 },//success
+					error: function(jqXHR, textStatus, errorThrown) {
+						if($("#error").length==0){//check whether error box exists or not
+							$("#menu").after('<div id="error" class="box">An error has occurred Please try again later!</div>');
+							$error.show();
+						}
+					 }//error
+					})//end of $.ajax
+	
+			var index=$menu_links.index(this);
+			var picture=pictures[index].picture;
+			$caption.text(picture.caption);
+			$image.attr("src",picture.source);
+			$title.text("Gallary 1 - " + picture.caption);
+			
+			return false;
+	})
+});
+
+
+
+</script>
+</head>
+
+<body>
+<h1 >Gallary 1</h1>
+<div id="container">
+	<p>
+		<img style="max-width:100%; max-height:100%"   src="images/Chrysanthemum.jpg" alt="Picture 1" />
+    </p>
+    
+	<p class="caption">
+    	Picture 1
+    </p>
+</div>
+
+<div id="menu" class="box">
+	<a href="#Picture 1">Picture 1</a>&nbsp;|
+    <a href="#Picture 2">Picture 2</a>&nbsp;|
+    <a href="#Picture 3">Picture 3</a>&nbsp;|
+    <a href="#Picture 4">Picture 4</a>
+</div>
+<!-- <div id="error" class="box">An error has occurred Please try again later!</div> !-->
+
+<div id="comments" class="box">
+    <form method="post" action="" >
+    	<h2 >New comment</h2>
+        <div>
+        	<label for="username">Username</label><br />
+            <input type="text" name="username" id="username" />
+        </div>
+        
+        <div>
+        	<label for="text">Comment</label><br />
+            <textarea name="text" id="text"></textarea>
+        </div>
+        
+        <div>
+        	<input type="submit" value="submit" />
+        </div>
+    </form>
+    <hr />
+    <div class="comment">
+    	<div class="comment_title">Comment 1-By Chirag</div>
+        <div>Great image!</div>
+    </div>
+    <hr />
+    <div class="comment">
+    	<div class="comment_title">Comment 2-By Simran</div>
+        <div>I agree.</div>
+    
+    </div>
+
+
+</div>
+
+<div id="loading" class="box">
+	Processing Comment...<br />
+    <img src="images/loading.gif" />
+</div>
+
+</body>
+</html>

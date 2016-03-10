@@ -1,0 +1,6 @@
+[
+	{"picture": {"caption":"Picture 1", "source":"images/Chrysanthemum.jpg"} },
+	{"picture": {"caption":"Picture 2", "source":"images/Desert.jpg" } },
+	{"picture": {"caption":"Picture 3", "source":"images/Koala.jpg" } },
+	{"picture": {"caption":"Picture 4", "source":"images/Penguins.jpg" } }
+]

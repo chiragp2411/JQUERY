@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pictures>
+	<picture caption="Picture 1" source="Chrysanthemum.jpg"/>
+	<picture caption="Picture 2" source="Desert.jpg"/>
+	<picture caption="Picture 3" source="Koala.jpg"/>
+	<picture caption="Picture 4" source="Penguins.jpg"/>
+</pictures>
